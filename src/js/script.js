@@ -5,7 +5,7 @@
 
   const select = {
     templateOf: {
-      menuProduct: '#template-menu-product',
+      menuProduct: '#template-menu-product', //selektor do naszego szablonu produktu.
     },
     containerOf: {
       menu: '#product-list',
@@ -52,7 +52,57 @@
     menuProduct: Handlebars.compile(document.querySelector(select.templateOf.menuProduct).innerHTML),
   };
 
+  class Product{
+    constructor(id, data){
+      const thisProduct = this;
+
+      thisProduct.id = id;
+      thisProduct.data = data;
+
+      thisProduct.renderInMenu(); // czyli tworzyć nasze produkty na stronie.
+
+      console.log('new Product:', thisProduct);
+    }
+
+    renderInMenu(){
+      const thisProduct = this;
+
+      /* generate HTML based on template */
+      const generatedHTML = templates.menuProduct(thisProduct.data);
+      //console.log(generatedHTML);
+
+      /* create element using utils.createElementFromHTML */
+      thisProduct.element = utils.createDOMFromHTML(generatedHTML);
+
+      /* find menu container */
+      const menuContainer = document.querySelector(select.containerOf.menu);
+
+      /* add element to menu */
+      menuContainer.appendChild(thisProduct.element);
+      //console.log(menuContainer);
+    }
+  }
+
   const app = {
+
+    initMenu: function(){ //instancje klasy Product
+      const thisApp = this;
+
+      console.log('thisApp.data:', thisApp.data);
+
+      for(let productData in thisApp.data.products){ //
+        new Product(productData, thisApp.data.products[productData]);
+      }
+      /*const testProduct = new Product();
+      console.log('testProduct:', testProduct);*/
+    },
+
+    initData: function(){ //aplikacja korzystała z tego źródła danych data.js
+      const thisApp = this;
+
+      thisApp.data = dataSource;
+    },
+
     init: function(){
       const thisApp = this;
       console.log('*** App starting ***');
@@ -60,6 +110,9 @@
       console.log('classNames:', classNames);
       console.log('settings:', settings);
       console.log('templates:', templates);
+
+      thisApp.initData();
+      thisApp.initMenu();
     },
   };
 
