@@ -60,6 +60,7 @@
       thisProduct.data = data;
 
       thisProduct.renderInMenu(); // czyli tworzyć nasze produkty na stronie.
+      thisProduct.initAccordion();
 
       console.log('new Product:', thisProduct);
     }
@@ -81,12 +82,35 @@
       menuContainer.appendChild(thisProduct.element);
       //console.log(menuContainer);
     }
+
+    initAccordion(){ // rozwijanie/zwijanie
+      const thisProduct = this;
+
+      /* find the clickable trigger (the element that should react to clicking) */
+      const clickableTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+
+      /* START: add event listener to clickable trigger on event click */
+      clickableTrigger.addEventListener('click', function(event) {
+        /* prevent default action for event */
+        event.preventDefault();
+        /* find active product (product that has active class) */
+        const activeProduct = document.querySelectorAll(select.all.menuProductsActive);
+        /* if there is active product and it's not thisProduct.element, remove class active from it */
+        if (activeProduct == null && activeProduct !== thisProduct.element){
+          activeProduct.classList.remove('active');
+        }
+        /* toggle active class on thisProduct.element */
+        thisProduct.element.classList.toggle('active');
+
+      });
+
+    } // wywolana w constructor
   }
 
   const app = {
 
-    initMenu: function(){ //instancje klasy Product
-      const thisApp = this;
+    initMenu: function(){ //instancje klasy Product // uruchamia sie jako druga
+      const thisApp = this; //  korzysta z przygotowanej wcześniej referencji do danych (thisApp.data)
 
       console.log('thisApp.data:', thisApp.data);
 
@@ -103,7 +127,7 @@
       thisApp.data = dataSource;
     },
 
-    init: function(){
+    init: function(){ // Ta wywołuje dwie kolejne – initData i initMenu
       const thisApp = this;
       console.log('*** App starting ***');
       console.log('thisApp:', thisApp);
