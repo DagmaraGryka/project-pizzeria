@@ -60,6 +60,7 @@
       thisProduct.data = data;
 
       thisProduct.renderInMenu(); // czyli tworzyć nasze produkty na stronie.
+      thisProduct.getElements();
       thisProduct.initAccordion();
 
       console.log('new Product:', thisProduct);
@@ -83,6 +84,16 @@
       //console.log(menuContainer);
     }
 
+    getElements(){
+      const thisProduct = this;
+
+      thisProduct.accordionTrigger = thisProduct.element.querySelector(select.menuProduct.clickable);
+      thisProduct.form = thisProduct.element.querySelector(select.menuProduct.form);
+      thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
+      thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
+      thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+    } // wywolanie w constructor
+
     initAccordion(){ // rozwijanie/zwijanie
       const thisProduct = this;
 
@@ -94,14 +105,14 @@
         /* prevent default action for event */
         event.preventDefault();
         /* find active product (product that has active class) */
-        const activeProduct = document.querySelectorAll(select.all.menuProductsActive);
+        const activeProduct = document.querySelectorAll(select.all.menuProductsActive); // (classNames.menuProduct.wrapperActive)
+        console.log(activeProduct);
         /* if there is active product and it's not thisProduct.element, remove class active from it */
-        if (activeProduct == null && activeProduct !== thisProduct.element){
+        if (activeProduct == null && activeProduct !== thisProduct.element){ // ??????????????
           activeProduct.classList.remove('active');
         }
         /* toggle active class on thisProduct.element */
         thisProduct.element.classList.toggle('active');
-
       });
 
     } // wywolana w constructor
