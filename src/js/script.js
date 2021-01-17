@@ -170,12 +170,12 @@
           if(optionSelect){
             if(optionSelect.default !== true){ //// check if the option is not default
               price = price + option.price; // add option price to price variable
-              console.log('Price added: ', price);
+              //console.log('Price added: ', price);
             }
            else {
               if (optionSelect.default == true){ // check if the option is default
                 price = price - option.price; // reduce price variable
-                console.log('Price removed: ', price);
+                //console.log('Price removed: ', price);
               }
            }
           }
