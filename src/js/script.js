@@ -178,18 +178,20 @@
             }
           }
 
-        }
-              // znajdz obrazki z klasa .paramId-optionId
-        /*const optionImage = thisProduct.imageWrapper.querySelector(paramId + optionId);
-        console.log(optionImage);
 
-        if(optionImage !== null) {
-          if(optionSelect){
+          // znajdz obrazki z klasa .paramId-optionId
+          const optionImage = thisProduct.imageWrapper.querySelector('.' + paramId + '-' + optionId);
+          console.log(optionImage);
+
+          if(optionImage !== null) {
+            if(optionSelect){
             optionImage.classList.add(classNames.menuProduct.imageVisible);
-          } else {
+            }
+            else {
             optionImage.classList.remove(classNames.menuProduct.imageVisible);
+            }
           }
-        }*/
+        }
       }
 
       // update calculated price in the HTML
