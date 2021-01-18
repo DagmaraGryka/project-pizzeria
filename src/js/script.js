@@ -94,6 +94,7 @@
       thisProduct.formInputs = thisProduct.form.querySelectorAll(select.all.formInputs);
       thisProduct.cartButton = thisProduct.element.querySelector(select.menuProduct.cartButton);
       thisProduct.priceElem = thisProduct.element.querySelector(select.menuProduct.priceElem);
+      thisProduct.imageWrapper = thisProduct.element.querySelector(select.menuProduct.imageWrapper);
     } // wywolanie w constructor
 
     initAccordion(){ // rozwijanie/zwijanie
@@ -159,7 +160,7 @@
 
         // for every option in this category
         for(let optionId in param.options) {
-        // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
+          // determine option value, e.g. optionId = 'olives', option = { label: 'Olives', price: 2, default: true }
           const option = param.options[optionId];
           console.log(optionId, option);
 
@@ -168,19 +169,27 @@
           //console.log(optionSelect);
 
           if(optionSelect){
-            if(optionSelect.default !== true){ //// check if the option is not default
+            if(option.default !== true){ //// check if the option is not default
               price = price + option.price; // add option price to price variable
-              //console.log('Price added: ', price);
             }
-           else {
-              if (optionSelect.default == true){ // check if the option is default
-                price = price - option.price; // reduce price variable
-                //console.log('Price removed: ', price);
-              }
-           }
+          } else {
+            if (option.default == true){ // check if the option is default
+            price = price - option.price; // reduce price variable
+            }
           }
-        }
 
+        }
+              // znajdz obrazki z klasa .paramId-optionId
+        /*const optionImage = thisProduct.imageWrapper.querySelector(paramId + optionId);
+        console.log(optionImage);
+
+        if(optionImage !== null) {
+          if(optionSelect){
+            optionImage.classList.add(classNames.menuProduct.imageVisible);
+          } else {
+            optionImage.classList.remove(classNames.menuProduct.imageVisible);
+          }
+        }*/
       }
 
       // update calculated price in the HTML
