@@ -221,7 +221,7 @@
       console.log('constructor elements:', element);
 
       thisWidget.getElements(element);
-      thisWidget.setValue(thisWidget.input.value);
+      thisWidget.setValue(settings.amountWidget.defaultValue);// ?????
       thisWidget.initActions();
     }
 
@@ -251,9 +251,10 @@
       }
 
       //thisWidget.value = newValue;
-      thisWidget.input.value = thisWidget.value;
+      //thisWidget.input.value = thisWidget.value;
+      thisWidget.value = settings.amountWidget.defaultValue; //???
       thisWidget.announce(); ///??? miejsce wywolania.
-
+      //console.log(thisWidget.value);
 
     }
 
@@ -261,7 +262,7 @@
       const thisWidget = this;
 
       thisWidget.input.addEventListener('change', function(){
-        thisWidget.setValue(thisWidget.input.value);
+        thisWidget.setValue(settings.amountWidget.defaultValue);//????
       });
 
       thisWidget.linkDecrease.addEventListener('click',function(event){
