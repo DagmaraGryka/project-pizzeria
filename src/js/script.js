@@ -257,7 +257,7 @@
       thisWidget.value = settings.amountWidget.defaultValue;
 
       thisWidget.getElements(element);
-      thisWidget.setValue(thisWidget.value); //  ?????
+      thisWidget.setValue(thisWidget.value);
       thisWidget.initActions();
     }
 
@@ -278,11 +278,8 @@
       const newValue = parseInt(value);
       //console.log(newValue);
 
-      //TO DO add validation // czy wartość, która przychodzi do funkcji, jest inna niż ta, która jest już aktualnie w thisWidget.value
-      //if(thisWidget.value !== newValue){
-      //  thisWidget.value = newValue;
-      //}
-
+      //TO DO add validation
+      // czy wartość, która przychodzi do funkcji, jest inna niż ta, która jest już aktualnie w thisWidget.value
       // ustalała, czy to wpisano w input jest faktycznie liczbą.
       if(thisWidget.value !== newValue && !isNaN(newValue) && newValue >= 0 && newValue <=10 ){ // PRZYPISAC LICZBY 1 - 10 ??????
         thisWidget.value = newValue;
@@ -291,8 +288,8 @@
       //thisWidget.value = newValue;
       thisWidget.input.value = thisWidget.value;
 
-      thisWidget.announce(); ///??? miejsce wywolania.
-      console.log(thisWidget.value);
+      thisWidget.announce(); /// miejsce wywolania.
+      //console.log(thisWidget.value);
 
     }
 
@@ -300,7 +297,7 @@
       const thisWidget = this;
 
       thisWidget.input.addEventListener('change', function(){
-        thisWidget.setValue(thisWidget.value);//????
+        thisWidget.setValue(thisWidget.value);
       });
 
       thisWidget.linkDecrease.addEventListener('click',function(event){
@@ -320,6 +317,40 @@
 
       const event = new Event('updated');
       thisWidget.element.dispatchEvent(event);
+
+    }
+  }
+
+  class Cart{
+    constructor(element){
+      const thisCart = this;
+
+      thisCart.products = []; //przechowywać produkty dodane do koszyka
+
+      thisCart.getElements(element);
+      thisCart.initActions();
+
+      console.log('new Cart', thisCart);
+
+    }
+
+    getElements(element){
+      const thisCart = this;
+
+      thisCart.dom = {};
+
+      thisCart.dom.wrapper = element;
+
+      thisCart.dom.toggleTrigger = thisCart.dom.wrapper.querySelector(select.cart.toggleTrigger);
+      console.log(thisCart.dom.toggleTrigger);
+    }
+
+    initActions(){
+      const thisCart = this;
+
+      thisCart.dom.toggleTrigger.addEventListener('click',function(){
+        thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
+      });
 
     }
   }
@@ -354,7 +385,15 @@
 
       thisApp.initData();
       thisApp.initMenu();
+      thisApp.initCart();
     },
+
+    initCart: function(){ //inicjowała instancję koszyka.
+      const thisApp = this;
+
+      const cartElem = document.querySelector(select.containerOf.cart);
+      thisApp.cart = new Cart(cartElem);
+    }
   };
 
   app.init();
