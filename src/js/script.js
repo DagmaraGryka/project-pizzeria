@@ -241,7 +241,7 @@
 
       thisProduct.amountWidget = new AmountWidget(thisProduct.amountWidgetElem);
 
-      thisProduct.amountWidgetElem.addEventListener('update',function(){
+      thisProduct.amountWidgetElem.addEventListener('updated',function(){
         thisProduct.processOrder();
       });
     }
