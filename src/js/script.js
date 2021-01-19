@@ -220,6 +220,8 @@
       console.log('AmountWidget:', thisWidget);
       console.log('constructor elements:', element);
 
+      thisWidget.value = settings.amountWidget.defaultValue;
+
       thisWidget.getElements(element);
       thisWidget.setValue(thisWidget.input.value);//  ?????
       thisWidget.initActions();
@@ -236,7 +238,8 @@
 
     setValue(value){
       const thisWidget = this;
-      thisWidget.value = settings.amountWidget.defaultValue;
+
+      //thisWidget.value = settings.amountWidget.defaultValue;
 
       const newValue = parseInt(value);
       //console.log(newValue);
@@ -253,7 +256,6 @@
 
       //thisWidget.value = newValue;
       thisWidget.input.value = thisWidget.value;
-      //thisWidget.value = settings.amountWidget.defaultValue; //???
 
       thisWidget.announce(); ///??? miejsce wywolania.
       console.log(thisWidget.value);
@@ -264,7 +266,7 @@
       const thisWidget = this;
 
       thisWidget.input.addEventListener('change', function(){
-        thisWidget.setValue(thisWidget.input.value);//????
+        thisWidget.setValue(thisWidget.value);//????
       });
 
       thisWidget.linkDecrease.addEventListener('click',function(event){
