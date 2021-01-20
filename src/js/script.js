@@ -284,7 +284,7 @@
       const formData = utils.serializeFormToObject(thisProduct.form); //Odczytywanie wartości z formularza
       //console.log('formData', formData);
 
-      const params ={};
+      const params = {};
 
       // for every category (param)...
       for(let paramId in thisProduct.data.params) {
@@ -294,7 +294,7 @@
 
         // create category param in params const eg. params = { ingredients: { name: 'Ingredients', options: {}}}
         params[paramId] = {
-          name: param.label,
+          label: param.label, //!!!!
           options: {}
         };
 
