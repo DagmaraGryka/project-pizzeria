@@ -310,9 +310,8 @@
 
           if(optionSelect){
             //option is selected
-            params[paramId].options[optionId] = params.option.label;
+            params[paramId].options[optionId] = option.label; // ??????
           }
-
         }
       }
 
