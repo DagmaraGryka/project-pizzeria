@@ -234,8 +234,8 @@
       // multiply price by amount
       price *= thisProduct.amountWidget.value;
 
-      thisProduct.priceSingle = thisProduct.data.price;// ???
-      thisProduct.price = price; // ?????
+      thisProduct.priceSingle = price,// ???
+      //thisProduct.price = price; // ?????
 
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
@@ -267,13 +267,13 @@
         id: thisProduct.id,
         name: thisProduct.data.name,
         amount: thisProduct.amountWidget.input.value,
-        priceSingle: thisProduct.data.price,
+        priceSingle: thisProduct.priceSingle, // thisProduct.data.price,
         price: thisProduct.priceSingle * thisProduct.amountWidget.input.value,
         params: thisProduct.prepareCartProductParams()
 
       };
 
-      return productSummary;
+      return (productSummary);
 
     }
 
@@ -454,7 +454,6 @@
       thisCartProduct.priceSingle = menuProduct.priceSingle;
       thisCartProduct.params = menuProduct.params;
 
-
       thisCartProduct.getElements(element);
       thisCartProduct.initAmountWidget();
 
@@ -475,13 +474,17 @@
 
     }
 
-    initAmountWidget(){ //????????
+    initAmountWidget(){ //???????? value 1.
       const thisCartProduct = this;
 
       thisCartProduct.amountWidget = new AmountWidget(thisCartProduct.dom.amountWidget);
 
-      thisCartProduct.dom.amountWidget.addEventListener('updated',function(){
+      thisCartProduct.dom.amountWidget.addEventListener('updated',function(){ //aktualizuje wartosc ceny
+        //WYSWIETLA SIE 1 value
+        thisCartProduct.amount = thisCartProduct.amountWidget.value;
+        thisCartProduct.price = thisCartProduct.priceSingle * thisCartProduct.amount;
 
+        thisCartProduct.dom.price.innerHTML = thisCartProduct.price;
       });
     }
 
