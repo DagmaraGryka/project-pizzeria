@@ -235,7 +235,7 @@
       //thisProduct.price = price; // ?????
 
       // multiply price by amount
-      //price *= thisProduct.amountWidget.value;
+      //price *= thisProduct.amountWidget.value; //??????????
       thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
 
       // update calculated price in the HTML
@@ -441,11 +441,39 @@
       //thisCart.products.push(menuProduct);
       thisCart.products.push(new CartProduct(menuProduct, generatedDOM));
       console.log('thisCart.products', thisCart.products);
+
+      thisCart.update();
+    }
+
+    update(){
+      const thisCart = this;
+
+      thisCart.deliveryFee = settings.cart.defaultDeliveryFee; //z informacją o cenie dostawy
+
+      thisCart.totalNumber = 0; //będzie odpowiadała całościowej liczbie sztuk,
+      thisCart.subtotalPrice = 0; //zsumowanej cenie za wszystko-bez kosztu dostawy
+
+      for(thisCart.product of thisCart.products){
+        thisCart.totalNumber += thisCart.product.amount; //???
+        thisCart.subtotalPrice += thisCart.product.price;
+      }
+
+      thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
+
+      if(thisCart.subtotalPrice > 0 ){
+        thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
+      }
+
+      console.log('totalPrice', thisCart.totalPrice,);
+      console.log('deliveryFee', thisCart.deliveryFee,);
+      console.log('totalNumber', thisCart.totalNumber,);
+      console.log('subtotalPrice', thisCart.subtotalPrice,);
+
     }
   }
 
   class CartProduct {
-    constructor(menuProduct, element){
+    constructor(menuProduct, element){ //referencję do obiektu podsumowania, referencję do utworzonego dla tego produktu elementu HTML-u
       const thisCartProduct = this;
 
       thisCartProduct.id = menuProduct.id;
