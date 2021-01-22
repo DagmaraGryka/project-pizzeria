@@ -231,8 +231,8 @@
         }
       }
 
-      thisProduct.priceSingle = price,// ??? !!!!!!!!!!!!1
-      //thisProduct.price = price; // ?????
+      thisProduct.priceSingle = price,
+      //thisProduct.price = price;
 
       // multiply price by amount
       //price *= thisProduct.amountWidget.value; //??????????
@@ -311,7 +311,7 @@
 
           if(optionSelect){
             //option is selected
-            params[paramId].options[optionId] = option.label; // ??????
+            params[paramId].options[optionId] = option.label;
           }
         }
       }
@@ -389,9 +389,12 @@
     announce(){
       const thisWidget = this;
 
-      const event = new Event('updated');
-      thisWidget.element.dispatchEvent(event);
+      //const event = new Event('updated');
+      const event = new CustomEvent('updated', {
+        bubbles: true
+      });
 
+      thisWidget.element.dispatchEvent(event);
     }
   }
 
@@ -417,6 +420,11 @@
 
       thisCart.dom.toggleTrigger = element.querySelector(select.cart.toggleTrigger);
       thisCart.dom.productList = element.querySelector(select.cart.productList);
+
+      thisCart.dom.deliveryFee = element.querySelector(select.cart.deliveryFee);
+      thisCart.dom.subtotalPrice = element.querySelector(select.cart.subtotalPrice);
+      thisCart.dom.totalPrice = element.querySelectorAll(select.cart.totalPrice);
+      thisCart.dom.totalNumber = element.querySelector(select.cart.totalNumber);
     }
 
     initActions(){
@@ -424,6 +432,10 @@
 
       thisCart.dom.toggleTrigger.addEventListener('click',function(){
         thisCart.dom.wrapper.classList.toggle(classNames.cart.wrapperActive);
+      });
+
+      thisCart.dom.productList.addEventListener('updated', function(){
+        thisCart.update();
       });
 
     }
@@ -462,12 +474,26 @@
 
       if(thisCart.subtotalPrice > 0 ){
         thisCart.totalPrice = thisCart.subtotalPrice + thisCart.deliveryFee;
+      } else {
+        thisCart.deliveryFee = 0;
+        thisCart.totalPrice = 0;
+      }
+
+      thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
+      thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
+      thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
+      //thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice; //????????
+
+      for(let price of thisCart.dom.totalPrice){
+        price.innerHTML = thisCart.totalPrice;
       }
 
       console.log('totalPrice', thisCart.totalPrice,);
       console.log('deliveryFee', thisCart.deliveryFee,);
       console.log('totalNumber', thisCart.totalNumber,);
       console.log('subtotalPrice', thisCart.subtotalPrice,);
+
+
 
     }
   }
