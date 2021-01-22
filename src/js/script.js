@@ -231,11 +231,12 @@
         }
       }
 
-      // multiply price by amount
-      price *= thisProduct.amountWidget.value;
-
-      thisProduct.priceSingle = price,// ???
+      thisProduct.priceSingle = price,// ??? !!!!!!!!!!!!1
       //thisProduct.price = price; // ?????
+
+      // multiply price by amount
+      //price *= thisProduct.amountWidget.value;
+      thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
 
       // update calculated price in the HTML
       thisProduct.priceElem.innerHTML = price;
@@ -266,9 +267,9 @@
       const productSummary = {
         id: thisProduct.id,
         name: thisProduct.data.name,
-        amount: thisProduct.amountWidget.input.value,
-        priceSingle: thisProduct.priceSingle, // thisProduct.data.price,
-        price: thisProduct.priceSingle * thisProduct.amountWidget.input.value,
+        amount: thisProduct.amountWidget.value, // poprawione.
+        priceSingle: thisProduct.priceSingle, //  thisProduct.data.price,
+        price: thisProduct.priceSingle * thisProduct.amountWidget.value, // poprawione
         params: thisProduct.prepareCartProductParams()
 
       };
