@@ -239,7 +239,7 @@
       thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
 
       // update calculated price in the HTML
-      thisProduct.priceElem.innerHTML = price;
+      thisProduct.priceElem.innerHTML = thisProduct.price;
     }
 
     initAmountWidget(){
@@ -331,7 +331,7 @@
       thisWidget.value = settings.amountWidget.defaultValue;
 
       thisWidget.getElements(element);
-      thisWidget.setValue(thisWidget.value);
+      thisWidget.setValue(thisWidget.input.value); // poprawione
       thisWidget.initActions();
     }
 
@@ -371,7 +371,7 @@
       const thisWidget = this;
 
       thisWidget.input.addEventListener('change', function(){
-        thisWidget.setValue(thisWidget.value);
+        thisWidget.setValue(this.value); // tutaj poprawione
       });
 
       thisWidget.linkDecrease.addEventListener('click',function(event){
@@ -438,6 +438,7 @@
         thisCart.update();
       });
 
+      // tutaj bylo zle. remove- !!!!!!!!!!!!!!!!
       thisCart.dom.productList.addEventListener('remove',function(event){
         thisCart.remove(event.detail.cartProduct);
       });
@@ -483,12 +484,13 @@
         thisCart.totalPrice = 0;
       }
 
+      //Musimy zadbać to, aby pokazywała je w HTML-u.
       thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
       thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
       thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
       //thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice; //????????
 
-      for(let price of thisCart.dom.totalPrice){
+      for(let price of thisCart.dom.totalPrice){ // dlaczego to jest w petli??
         price.innerHTML = thisCart.totalPrice;
       }
 
@@ -499,16 +501,17 @@
 
     }
 
-    remove(CartProduct){ ////???????????????????
+    remove(CartProduct){
       const thisCart = this;
 
       //Znajdowanie indeksu elementu
       const indexOfProduct = thisCart.products.indexOf(CartProduct);
-      console.log('index', indexOfProduct);
 
+      //Usuwanie elementu- dwa argumenty/ indeks pierwszego usuwanego elementu
+      // i liczbę elementów, licząc od pierwszego usuwanego elementu
       thisCart.products.splice(indexOfProduct, 1);
 
-
+      //Usunięcie elementu z DOM/ wykonanej na elemencie, który ma zostać usunięty
       CartProduct.dom.wrapper.remove();
 
       thisCart.update();
