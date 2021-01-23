@@ -494,10 +494,10 @@
         price.innerHTML = thisCart.totalPrice;
       }
 
-      console.log('totalPrice', thisCart.totalPrice,);
-      console.log('deliveryFee', thisCart.deliveryFee,);
-      console.log('totalNumber', thisCart.totalNumber,);
-      console.log('subtotalPrice', thisCart.subtotalPrice,);
+      console.log('totalPrice', thisCart.totalPrice);
+      console.log('deliveryFee', thisCart.deliveryFee);
+      console.log('totalNumber', thisCart.totalNumber);
+      console.log('subtotalPrice', thisCart.subtotalPrice);
 
     }
 
