@@ -77,6 +77,11 @@
       defaultDeliveryFee: 20,
     },
     // CODE ADDED END
+    db: {
+      url: '//localhost:3131',
+      product: 'product',
+      order: 'order',
+    },
   };
 
   const templates = {
@@ -621,7 +626,27 @@
     initData: function(){ //aplikacja korzystała z tego źródła danych data.js
       const thisApp = this;
 
-      thisApp.data = dataSource;
+      //thisApp.data = dataSource;
+      thisApp.data = {};
+
+      const url = settings.db.url + '/' + settings.db.product; //http://localhost:3131/product
+
+      fetch(url) //funkcji fetch wysyłamy zapytanie (request) pod podany adres endpointu
+        .then(function(rawResponse){ //otrzyma odpowiedź jest w formacie JSON
+          return rawResponse.json(); //skonwertuj dane do obiektu JS-owego.
+        })
+
+        .then(function(parsedResponse){ //pokaż w konsoli te skonwertowane dane.
+          console.log('parsedResponse', parsedResponse);
+
+          //sace parsedResponse at thisApp.data.products
+
+          //execute initMenu menthid
+
+
+        });
+
+        console.log('thisApp.data',JSON.stringify(thisApp.data));
     },
 
     init: function(){ // Ta wywołuje dwie kolejne – initData i initMenu
