@@ -430,6 +430,10 @@
       thisCart.dom.subtotalPrice = element.querySelector(select.cart.subtotalPrice);
       thisCart.dom.totalPrice = element.querySelectorAll(select.cart.totalPrice);
       thisCart.dom.totalNumber = element.querySelector(select.cart.totalNumber);
+
+      thisCart.dom.form = element.querySelector(select.cart.form); //formularz
+      thisCart.dom.address = thisCart.dom.form.querySelector(select.cart.address);
+      thisCart.dom.phone = thisCart.dom.form.querySelector(select.cart.phone);
     }
 
     initActions(){
@@ -446,6 +450,12 @@
       // tutaj bylo zle. remove- !!!!!!!!!!!!!!!!
       thisCart.dom.productList.addEventListener('remove',function(event){
         thisCart.remove(event.detail.cartProduct);
+      });
+
+      thisCart.dom.form.addEventListener('submit',function(event){
+        event.preventDefault();
+
+        thisCart.sendOrder();
       });
 
     }
@@ -522,6 +532,39 @@
       thisCart.update();
 
       console.log(thisCart.products);
+
+    }
+
+    sendOrder(){
+      const thisCart = this;
+
+      const url = settings.db.url + '/' + settings.db.order; //http://localhost:3131/order
+
+      const payload = { //często określa się dane, które będą wysłane do serwera.
+        address: thisCart.dom.address.value,
+        phone: thisCart.dom.phone.value,
+        totalPrice: thisCart.totalPrice,
+        subtotalPrice: thisCart.subtotalPrice,
+        totalNumber: thisCart.totalNumber,
+        deliveryFee: thisCart.deliveryFee,
+        products: []
+      };
+
+      console.log('payload', payload);
+
+      for(let prod of thisCart.products){
+        payload.products.push(prod.getData()); //Dodajemy tylko obiekty podsumowania.
+      }
+
+      const options = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload),
+      };
+
+      fetch(url, options);
 
     }
   }
@@ -603,11 +646,23 @@
 
     }
 
+    getData(){ //będą potrzebne w momencie zapisywania zamówienia,
+      const thisCartProduct = this;
 
+      const formProduct = {
+        id: thisCartProduct.id,
+        amount: thisCartProduct.amount,
+        price: thisCartProduct.price,
+        priceSingle: thisCartProduct.priceSingle,
+        name: thisCartProduct.name,
+        params: thisCartProduct.params,
+      };
 
-
+      return formProduct;
+    }
 
   }
+
 
   const app = {
 
@@ -617,7 +672,8 @@
       console.log('thisApp.data:', thisApp.data);
 
       for(let productData in thisApp.data.products){
-        new Product(productData, thisApp.data.products[productData]);
+        //new Product(productData, thisApp.data.products[productData]);
+        new Product(thisApp.data.products[productData].id, thisApp.data.products[productData]);
       }
       /*const testProduct = new Product();
       console.log('testProduct:', testProduct);*/
@@ -639,14 +695,15 @@
         .then(function(parsedResponse){ //pokaż w konsoli te skonwertowane dane.
           console.log('parsedResponse', parsedResponse);
 
-          //sace parsedResponse at thisApp.data.products
+          //save parsedResponse at thisApp.data.products
+          thisApp.data.products = parsedResponse;
 
-          //execute initMenu menthid
-
+          //execute initMenu menthod
+          thisApp.initMenu();
 
         });
 
-        console.log('thisApp.data',JSON.stringify(thisApp.data));
+      console.log('thisApp.data',JSON.stringify(thisApp.data));
     },
 
     init: function(){ // Ta wywołuje dwie kolejne – initData i initMenu
@@ -658,7 +715,7 @@
       console.log('templates:', templates);
 
       thisApp.initData();
-      thisApp.initMenu();
+      //thisApp.initMenu();
       thisApp.initCart();
     },
 
