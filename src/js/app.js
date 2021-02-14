@@ -1,8 +1,17 @@
 import {settings,select,classNames, templates} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
+import Booking from './components/Booking.js';
 
 const app = {
+
+  initBooking: function(){
+    const thisApp = this;
+
+    thisApp.bookingContainer = document.querySelector(select.containerOf.booking); //znajdowała kontener widgetu do rezerwacji stron
+    new Booking(thisApp.bookingContainer); //tworzyła nową instancję klasy,przekazywała do konstruktora kontener
+
+  },
 
   initPages: function(){
     const thisApp = this;
@@ -20,7 +29,6 @@ const app = {
       }
     }
 
-    console.log('pageMatchingHash', pageMatchingHash);
     thisApp.activatePage(pageMatchingHash);
 
 
@@ -108,10 +116,10 @@ const app = {
     console.log('templates:', templates);
 
     thisApp.initPages();
-
     thisApp.initData();
-    //thisApp.initMenu();
     thisApp.initCart();
+
+    thisApp.initBooking();
   },
 
   initCart: function(){ //inicjowała instancję koszyka.
