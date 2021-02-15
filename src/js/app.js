@@ -25,6 +25,7 @@ const app = {
 
     for(let page of thisApp.pages){
       if(page.id == idFromHash){
+        pageMatchingHash = page.id;
         break;
       }
     }
