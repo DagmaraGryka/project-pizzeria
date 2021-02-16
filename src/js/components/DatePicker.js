@@ -4,7 +4,7 @@ import {select, settings} from '../settings.js';
 
 class DatePicker extends BaseWidget{
   constructor(wrapper){
-    super(wrapper, utils.dateToStr(new Date()));
+    super(wrapper, utils.dateToStr(new Date())); //klasa pochodna w konstruktorze musi włączyć konstruktor klasy bazowej
     const thisWidget = this;
 
     thisWidget.dom.input = thisWidget.dom.wrapper.querySelector(select.widgets.datePicker.input);

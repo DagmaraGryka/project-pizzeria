@@ -25,16 +25,10 @@ class BaseWidget{ //klasa nadrzedna
     // ustalała, czy to wpisano w input jest faktycznie liczbą.
     if(newValue !=  thisWidget.correctValue && thisWidget.isValid(newValue)){
       thisWidget.correctValue = newValue;
-      thisWidget.announce(); /// miejsce wywolania.
+      thisWidget.announce();
     }
 
     thisWidget.renderValue();
-  }
-
-  setValue(value){
-    const thisWidget = this;
-
-    thisWidget.value = value;
   }
 
   parseValue(value){ //przeksztalci vlaue na odpowiedni typ

@@ -1,4 +1,4 @@
-import {settings,select,classNames, templates} from './settings.js';
+import {settings,select,classNames} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
@@ -71,7 +71,7 @@ const app = {
   initMenu: function(){ //instancje klasy Product // uruchamia sie jako druga
     const thisApp = this; //  korzysta z przygotowanej wcześniej referencji do danych (thisApp.data)
 
-    console.log('thisApp.data:', thisApp.data);
+    //console.log('thisApp.data:', thisApp.data);
 
     for(let productData in thisApp.data.products){
       //new Product(productData, thisApp.data.products[productData]);
@@ -95,7 +95,7 @@ const app = {
       })
 
       .then(function(parsedResponse){ //pokaż w konsoli te skonwertowane dane.
-        console.log('parsedResponse', parsedResponse);
+        //console.log('parsedResponse', parsedResponse);
 
         //save parsedResponse at thisApp.data.products
         thisApp.data.products = parsedResponse;
@@ -110,11 +110,11 @@ const app = {
 
   init: function(){ // Ta wywołuje dwie kolejne – initData i initMenu
     const thisApp = this;
-    console.log('*** App starting ***');
-    console.log('thisApp:', thisApp);
-    console.log('classNames:', classNames);
-    console.log('settings:', settings);
-    console.log('templates:', templates);
+    //console.log('*** App starting ***');
+    //console.log('thisApp:', thisApp);
+    //console.log('classNames:', classNames);
+    //console.log('settings:', settings);
+    //console.log('templates:', templates);
 
     thisApp.initPages();
     thisApp.initData();
