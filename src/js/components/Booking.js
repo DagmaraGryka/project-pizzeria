@@ -96,7 +96,7 @@ class Booking {
     thisBooking.updateDOM();
   }
 
-  makeBooked (date, hour, duration, table){
+  makeBooked(date,  hour, duration, table){
     const thisBooking = this;
 
     if(typeof thisBooking.booked[date] == 'undefined'){
@@ -105,8 +105,8 @@ class Booking {
 
     const startHour = utils.hourToNumber(hour);
 
-    for (let hourBlock = startHour; hourBlock < startHour + duration; hourBlock+= 0.5){
-      //console.log('loop', hourBlock);
+    for(let hourBlock = startHour; hourBlock < startHour + duration;  hourBlock += 0.5){
+
       if(typeof thisBooking.booked[date][hourBlock] == 'undefined'){
         thisBooking.booked[date][hourBlock] = [];
       }
@@ -117,10 +117,11 @@ class Booking {
 
   updateDOM(){
     const thisBooking = this;
+
     thisBooking.date = thisBooking.datePicker.value;
     thisBooking.hour = utils.hourToNumber(thisBooking.hourPicker.value);
 
-    let allAvailable = false;
+    let  allAvailable = false;
 
     if(
       typeof thisBooking.booked[thisBooking.date] == 'undefined'

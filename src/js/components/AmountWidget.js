@@ -39,20 +39,20 @@ class AmountWidget extends BaseWidget{ //dziedziczy metody z basewidget
     const thisWidget = this;
 
     thisWidget.dom.input.addEventListener('change', function(){
-      //thisWidget.setValue(thisWidget.dom.input.value); // tutaj poprawione
+      //thisWidget.setValue(thisWidget.dom.input.value);
       thisWidget.value = thisWidget.dom.input.value;
     });
 
     thisWidget.dom.linkDecrease.addEventListener('click',function(event){
       event.preventDefault();
-      thisWidget.setValue(thisWidget.value - 1);
+      thisWidget.value = thisWidget.value - 1;
     });
 
     thisWidget.dom.linkIncrease.addEventListener('click', function(event){
       event.preventDefault();
-      thisWidget.setValue(thisWidget.value + 1);
+      thisWidget.value = thisWidget.value + 1; // TUTAJ COS NIE TAK
     });
-
+    // DO POPRAWKI AMOUNT W ORDER!!!!!!!!!!
   }
 
 }
