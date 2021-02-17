@@ -139,6 +139,11 @@
     line-height: 50px;
   }
 
+  .selected {
+    background-color: green;
+    border: 2px solid dark;
+  }
+
   .table {
     @extend .h2;
     width: 70px;
