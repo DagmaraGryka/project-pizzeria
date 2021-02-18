@@ -139,11 +139,6 @@
     line-height: 50px;
   }
 
-  .selected {
-    background-color: green;
-    border: 2px solid dark;
-  }
-
   .table {
     @extend .h2;
     width: 70px;
@@ -177,6 +172,22 @@
         opacity: 0.4;
       }
 
+    }
+
+    &.selected {
+      cursor: not-allowed;
+      color: lighten($color-dark, 40%);
+
+      &::after {
+        position: absolute;
+        content: '';
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background: #341f97;
+        opacity: 0.4;
+      }
     }
   }
 
