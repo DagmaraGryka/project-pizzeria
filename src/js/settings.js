@@ -63,6 +63,11 @@ export const select = {
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
     tablesAll: '.floor-plan',
+    phone: '[name="phone"]',
+    address: '[name="address"]',
+    starter: '[name="starter"]',
+    button: '.booking-form',
+    clickedButton: '.booking-form [type="submit"]',
 
   },
   nav: {

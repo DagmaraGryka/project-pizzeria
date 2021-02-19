@@ -8,7 +8,6 @@ class AmountWidget extends BaseWidget{ //dziedziczy metody z basewidget
     const thisWidget = this;
 
     thisWidget.getElements(element);
-
     thisWidget.initActions();
   }
 
@@ -50,7 +49,7 @@ class AmountWidget extends BaseWidget{ //dziedziczy metody z basewidget
 
     thisWidget.dom.linkIncrease.addEventListener('click', function(event){
       event.preventDefault();
-      thisWidget.value = thisWidget.value + 1; // TUTAJ COS NIE TAK
+      thisWidget.value = thisWidget.value + 1;
     });
     // DO POPRAWKI AMOUNT W ORDER!!!!!!!!!!
   }
