@@ -63,7 +63,7 @@ export const select = {
     hoursAmount: '.hours-amount',
     tables: '.floor-plan .table',
     tablesAll: '.floor-plan',
-    tableSelected: '.selected',
+
   },
   nav: {
     links: '.main-nav a',
@@ -83,6 +83,7 @@ export const classNames = {
   booking: {
     loading: 'loading',
     tableBooked: 'booked',
+    tableSelected: 'selected',
   },
   nav: {
     active: 'active',
