@@ -9,6 +9,8 @@ class AmountWidget extends BaseWidget{ //dziedziczy metody z basewidget
 
     thisWidget.getElements(element);
     thisWidget.initActions();
+
+    thisWidget.renderValue(); //??????
   }
 
   getElements(){
@@ -22,8 +24,8 @@ class AmountWidget extends BaseWidget{ //dziedziczy metody z basewidget
 
   isValid(value){
     return !isNaN(value)
-      && value >= settings.amountWidget.defaultMin
-      && value <= settings.amountWidget.defaultMax;
+      && value >= 1
+      && value <= 10;
 
   }
 

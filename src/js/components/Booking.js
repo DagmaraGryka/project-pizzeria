@@ -172,13 +172,12 @@ class Booking {
 
     thisBooking.dom.tables = thisBooking.dom.wrapper.querySelectorAll(select.booking.tables);
 
-    //thisBooking.dom.tableSelected = thisBooking.dom.wrapper.querySelector(classNames.booking.tableSelected);
-    //thisBooking.dom.tablesAll = thisBooking.dom.wrapper.querySelector(select.booking.tablesAll); //3
-
     thisBooking.dom.phone = thisBooking.dom.wrapper.querySelector(select.booking.phone);
     thisBooking.dom.address = thisBooking.dom.wrapper.querySelector(select.booking.address);
     thisBooking.dom.starters = thisBooking.dom.wrapper.querySelectorAll(select.booking.starter);
     thisBooking.dom.buttonBookTable = thisBooking.dom.wrapper.querySelector(select.booking.button);
+
+    thisBooking.dom.duration = thisBooking.dom.wrapper.querySelector(select.booking.duration);
 
   }
 
@@ -187,12 +186,12 @@ class Booking {
 
     thisBooking.peopleAmounttWidget = new AmountWidget(thisBooking.dom.peopleAmount);
     thisBooking.dom.peopleAmount.addEventListener('click', function(){
-      thisBooking.updateDOM();
+
     });
 
     thisBooking.hoursAmounttWidget = new AmountWidget(thisBooking.dom.hoursAmount);
     thisBooking.dom.hoursAmount.addEventListener('click', function(){
-      thisBooking.updateDOM();
+
     });
 
     thisBooking.hourPicker = new HourPicker(thisBooking.dom.hourPicker);
