@@ -26,7 +26,7 @@ class AmountWidget extends BaseWidget{ //dziedziczy metody z basewidget
 
   isValid(value){
     return !isNaN(value)
-      && value >= 1
+      && value >= 0
       && value <= 10;
 
   }
