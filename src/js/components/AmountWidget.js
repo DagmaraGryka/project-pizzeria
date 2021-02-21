@@ -10,7 +10,7 @@ class AmountWidget extends BaseWidget{ //dziedziczy metody z basewidget
     thisWidget.getElements(element);
     thisWidget.initActions();
 
-    thisWidget.dom.input.value = thisWidget.dom.input;
+    thisWidget.value = thisWidget.dom.input.value;
   }
 
   getElements(){
@@ -58,21 +58,6 @@ class AmountWidget extends BaseWidget{ //dziedziczy metody z basewidget
     // DO POPRAWKI AMOUNT W ORDER!!!!!!!!!!
   }
 
-  set value(value){ //// NAPRAWIC TO TUTAJ //
-    const thisWidget = this;
-
-
-    thisWidget.dom.input.value = thisWidget.dom.input;
-
-
-
-    console.log(value); //TUTAJ NIE DZIALA JAK POWINNNO ;(
-    //Dzieje się tak, ponieważ renderValue ustawia to co jest w thisWidget.value a tam ustawiasz
-    //tylko settings.amountWidget.defaultValue i nigdzie nie bierzesz pod uwagę tego co jest ustawione w HTML :)
-    //Zamiast rednerValue użyj settera i przypisz do niego thisWidget.dom.input.value
-
-
-  }
 
 
 

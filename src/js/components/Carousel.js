@@ -19,6 +19,7 @@ class Carousel {
       contain: true,
       prevNextButtons: false,
       autoPlay: true,
+      startAt: 1,
     });
   }
 }
