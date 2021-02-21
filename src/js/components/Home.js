@@ -1,11 +1,12 @@
-import {templates } from '../settings.js';
+import {select, templates } from '../settings.js';
+import Carousel from './Carousel.js';
 
 class Home{
   constructor(element){
     const thisHome = this;
 
     thisHome.render(element);
-    this.initWidget();
+    thisHome.initCarousel();
   }
 
   render(element){
@@ -17,10 +18,14 @@ class Home{
     thisHome.dom.wrapper = element;
     thisHome.dom.wrapper.innerHTML = generatedHTML;
 
+    thisHome.dom.carousel = thisHome.dom.wrapper.querySelector(select.widgets.home.carousel);
+
   }
 
-  initWidget(){
+  initCarousel(){
+    const thisHome = this;
 
+    thisHome.carouse = new Carousel(thisHome.dom.carousel);
   }
 }
 

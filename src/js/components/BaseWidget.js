@@ -20,9 +20,6 @@ class BaseWidget{ //klasa nadrzedna
 
     const newValue = thisWidget.parseValue(value);
 
-    //TO DO add validation
-    // czy wartość, która przychodzi do funkcji, jest inna niż ta, która jest już aktualnie w  thisWidget.correctValue
-    // ustalała, czy to wpisano w input jest faktycznie liczbą.
     if(newValue !=  thisWidget.correctValue && thisWidget.isValid(newValue)){
       thisWidget.correctValue = newValue;
       thisWidget.announce();

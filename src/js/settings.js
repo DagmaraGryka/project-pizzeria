@@ -40,6 +40,9 @@ export const select = {
       input: 'input[type="range"]',
       output: '.output',
     },
+    home: {
+      carousel: '.carousel-main',
+    }
   },
   // CODE ADDED START
   cart: {

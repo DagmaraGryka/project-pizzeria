@@ -2,6 +2,7 @@ import {settings,select,classNames} from './settings.js';
 import Product from './components/Product.js';
 import Cart from './components/Cart.js';
 import Booking from './components/Booking.js';
+import Home from './components/Home.js';
 
 const app = {
 
@@ -11,6 +12,12 @@ const app = {
     thisApp.bookingContainer = document.querySelector(select.containerOf.booking); //znajdowała kontener widgetu do rezerwacji stron
     new Booking(thisApp.bookingContainer); //tworzyła nową instancję klasy,przekazywała do konstruktora kontener
 
+  },
+
+  initHome: function(){
+    const thisApp = this;
+    thisApp.homeWrapper = document.querySelector(select.containerOf.home);
+    new Home(thisApp.homeWrapper);
   },
 
   initPages: function(){
@@ -121,6 +128,7 @@ const app = {
     thisApp.initCart();
 
     thisApp.initBooking();
+    thisApp.initHome();
   },
 
   initCart: function(){ //inicjowała instancję koszyka.
