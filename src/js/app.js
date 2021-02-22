@@ -54,6 +54,23 @@ const app = {
         //change URL hash
         window.location.hash = '#/' + id;
       });
+
+      //kliknięcie w box zachęcający do zamówienia online powinno otwierać podstronę Order
+      //(razem z zaznaczeniem odpowiedniego linku w nawigacji jako aktywnego),
+
+      const buttonsHome = document.querySelectorAll('.button');
+
+      for(let button of buttonsHome) {
+        button.addEventListener('click', function(event) {
+          const clickedElement = this;
+          event.preventDefault();
+
+          const pageId = clickedElement.getAttribute('href').replace('#', '');
+          thisApp.activatePage(pageId);
+
+
+        });
+      }
     }
 
   },

@@ -42,6 +42,8 @@ export const select = {
     },
     home: {
       carousel: '.carousel-main',
+      orderBox: '.order-box',
+      bookBox: '.book-box',
     }
   },
   // CODE ADDED START
