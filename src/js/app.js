@@ -24,8 +24,8 @@ const app = {
     const thisApp = this;
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children; //dzieci kontera stron
-    thisApp.navLinks = document.querySelectorAll(select.nav.links);
     thisApp.homeLinks = document.querySelectorAll(select.nav.homeLinks);
+    thisApp.navLinks = document.querySelectorAll(select.nav.links);
 
     //thisApp.orderBox = document.querySelector(select.widgets.home.orderBox);
     //thisApp.bookBox = document.querySelector(select.widgets.home.bookBox);
@@ -44,19 +44,15 @@ const app = {
 
     thisApp.activatePage(pageMatchingHash);
 
-    const navs = [...thisApp.navLinks, ...thisApp.homeLinks];
-
+    const navs = [...thisApp.homeLinks, ...thisApp.navLinks ]; // O TUTAJ!!! ????
 
     for(let nav of navs){
       nav.addEventListener('click', function(event){
         const clickedElement = this;
         event.preventDefault();
-
-        const id = clickedElement.getAttribute('href').replace('#', ''); //get page id from href attribiute
-
-        thisApp.activatePage(id); //run thisApp.activatePage with taht id
-
-        window.location.hash = '#/' + id; ////change URL hash
+        const id = clickedElement.getAttribute('href').replace('#', '');
+        thisApp.activatePage(id);
+        window.location.hash = '#/' + id;
       });
     }
 
@@ -132,12 +128,13 @@ const app = {
     //console.log('settings:', settings);
     //console.log('templates:', templates);
 
+    thisApp.initHome();
+
     thisApp.initPages();
     thisApp.initData();
     thisApp.initCart();
 
     thisApp.initBooking();
-    thisApp.initHome();
   },
 
   initCart: function(){ //inicjowała instancję koszyka.
