@@ -24,7 +24,12 @@ const app = {
     const thisApp = this;
 
     thisApp.pages = document.querySelector(select.containerOf.pages).children; //dzieci kontera stron
-    thisApp.navLinks = document.querySelectorAll(select.nav.links); //dzieci kontera stron
+    thisApp.navLinks = document.querySelectorAll(select.nav.links);
+    thisApp.homeLinks = document.querySelectorAll(select.nav.homeLinks);
+
+    //thisApp.orderBox = document.querySelector(select.widgets.home.orderBox);
+    //thisApp.bookBox = document.querySelector(select.widgets.home.bookBox);
+
 
     const idFromHash = window.location.hash.replace('#/', '');
 
@@ -39,39 +44,23 @@ const app = {
 
     thisApp.activatePage(pageMatchingHash);
 
+    const navs = [...thisApp.navLinks, ...thisApp.homeLinks];
 
-    for(let link of thisApp.navLinks){
-      link.addEventListener('click', function(event){
+
+    for(let nav of navs){
+      nav.addEventListener('click', function(event){
         const clickedElement = this;
         event.preventDefault();
 
-        //get page id from href attribiute
-        const id = clickedElement.getAttribute('href').replace('#', '');
+        const id = clickedElement.getAttribute('href').replace('#', ''); //get page id from href attribiute
 
-        //run thisApp.activatePage with taht id
-        thisApp.activatePage(id);
+        thisApp.activatePage(id); //run thisApp.activatePage with taht id
 
-        //change URL hash
-        window.location.hash = '#/' + id;
+        window.location.hash = '#/' + id; ////change URL hash
       });
-
-      //kliknięcie w box zachęcający do zamówienia online powinno otwierać podstronę Order
-      //(razem z zaznaczeniem odpowiedniego linku w nawigacji jako aktywnego),
-
-      const buttonsHome = document.querySelectorAll('.button');
-
-      for(let button of buttonsHome) {
-        button.addEventListener('click', function(event) {
-          const clickedElement = this;
-          event.preventDefault();
-
-          const pageId = clickedElement.getAttribute('href').replace('#', '');
-          thisApp.activatePage(pageId);
-
-
-        });
-      }
     }
+
+
 
   },
 
@@ -90,6 +79,9 @@ const app = {
         link.getAttribute('href') == '#' + pageId
       );
     }
+
+
+
   },
 
   initMenu: function(){ //instancje klasy Product // uruchamia sie jako druga

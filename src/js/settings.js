@@ -79,6 +79,7 @@ export const select = {
   },
   nav: {
     links: '.main-nav a',
+    homeLinks: '.small-box a',
   },
   // CODE ADDED END
 };
