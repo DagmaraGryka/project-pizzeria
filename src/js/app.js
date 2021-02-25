@@ -56,8 +56,6 @@ const app = {
       });
     }
 
-
-
   },
 
   activatePage: function(pageId){
