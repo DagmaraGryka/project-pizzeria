@@ -20,13 +20,6 @@ class Home{
 
     thisHome.dom.carousel = thisHome.dom.wrapper.querySelector(select.widgets.home.carousel);
 
-    //thisHome.dom.orderBox = thisHome.dom.wrapper.querySelector(select.widgets.home.orderBox);
-    //thisHome.dom.bookTableBox = thisHome.dom.wrapper.querySelector(select.widgets.home.bookBox);
-    //thisHome.pages = document.querySelector(select.containerOf.pages).children;
-    //thisHome.navLinks = document.querySelectorAll(select.nav.links);
-
-    //thisHome.homeWrapper = document.querySelector(select.containerOf.home);
-
   }
 
   initCarousel(){
