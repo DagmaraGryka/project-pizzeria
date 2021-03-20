@@ -25,14 +25,10 @@ class Home{
   initCarousel(){
     const thisHome = this;
 
-    thisHome.carousel = new Carousel(thisHome.dom.carousel);
+    window.onload = function(){
+      thisHome.carousel = new Carousel(thisHome.dom.carousel);
+    };
   }
-
-  //kliknięcie w box zachęcający do zamówienia online powinno otwierać podstronę Order
-  //(razem z zaznaczeniem odpowiedniego linku w nawigacji jako aktywnego),
-
-
-
 
 }
 export default Home;
