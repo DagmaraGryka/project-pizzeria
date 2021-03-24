@@ -151,7 +151,6 @@ class Product{
     //thisProduct.price = price;
 
     // multiply price by amount
-    //price *= thisProduct.amountWidget.value; //??????????
     thisProduct.price = thisProduct.priceSingle * thisProduct.amountWidget.value;
 
     // update calculated price in the HTML
@@ -195,9 +194,9 @@ class Product{
     const productSummary = {
       id: thisProduct.id,
       name: thisProduct.data.name,
-      amount: thisProduct.amountWidget.value, // poprawione.
-      priceSingle: thisProduct.priceSingle, //  thisProduct.data.price,
-      price: thisProduct.priceSingle * thisProduct.amountWidget.value, // poprawione
+      amount: thisProduct.amountWidget.value,
+      priceSingle: thisProduct.priceSingle,
+      price: thisProduct.priceSingle * thisProduct.amountWidget.value,
       params: thisProduct.prepareCartProductParams()
 
     };

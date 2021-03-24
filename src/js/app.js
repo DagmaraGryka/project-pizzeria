@@ -27,10 +27,6 @@ const app = {
     thisApp.homeLinks = document.querySelectorAll(select.nav.homeLinks);
     thisApp.navLinks = document.querySelectorAll(select.nav.links);
 
-    //thisApp.orderBox = document.querySelector(select.widgets.home.orderBox);
-    //thisApp.bookBox = document.querySelector(select.widgets.home.bookBox);
-
-
     const idFromHash = window.location.hash.replace('#/', '');
 
     let pageMatchingHash = thisApp.pages[0].id;
@@ -44,7 +40,7 @@ const app = {
 
     thisApp.activatePage(pageMatchingHash);
 
-    const navs = [...thisApp.homeLinks, ...thisApp.navLinks ]; // O TUTAJ!!! ????
+    const navs = [...thisApp.homeLinks, ...thisApp.navLinks ];
 
     for(let nav of navs){
       nav.addEventListener('click', function(event){
@@ -118,7 +114,7 @@ const app = {
     console.log('thisApp.data',JSON.stringify(thisApp.data));
   },
 
-  init: function(){ // Ta wywołuje dwie kolejne – initData i initMenu
+  init: function(){ // wywołuje dwie kolejne – initData i initMenu
     const thisApp = this;
     //console.log('*** App starting ***');
     //console.log('thisApp:', thisApp);

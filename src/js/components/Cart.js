@@ -46,7 +46,6 @@ class Cart{
       thisCart.update();
     });
 
-    // tutaj bylo zle. remove- !!!!!!!!!!!!!!!!
     thisCart.dom.productList.addEventListener('remove',function(event){
       thisCart.remove(event.detail.cartProduct);
     });
@@ -79,13 +78,13 @@ class Cart{
   update(){
     const thisCart = this;
 
-    thisCart.deliveryFee = settings.cart.defaultDeliveryFee; //z informacją o cenie dostawy
+    thisCart.deliveryFee = settings.cart.defaultDeliveryFee;
 
-    thisCart.totalNumber = 0; //będzie odpowiadała całościowej liczbie sztuk,
-    thisCart.subtotalPrice = 0; //zsumowanej cenie za wszystko-bez kosztu dostawy
+    thisCart.totalNumber = 0;
+    thisCart.subtotalPrice = 0;
 
     for(thisCart.product of thisCart.products){
-      thisCart.totalNumber += thisCart.product.amount; //???
+      thisCart.totalNumber += thisCart.product.amount;
       thisCart.subtotalPrice += thisCart.product.price;
     }
 
@@ -102,9 +101,8 @@ class Cart{
     thisCart.dom.deliveryFee.innerHTML = thisCart.deliveryFee;
     thisCart.dom.subtotalPrice.innerHTML = thisCart.subtotalPrice;
     thisCart.dom.totalNumber.innerHTML = thisCart.totalNumber;
-    //thisCart.dom.totalPrice.innerHTML = thisCart.totalPrice; //????????
 
-    for(let price of thisCart.dom.totalPrice){ // dlaczego to jest w petli??
+    for(let price of thisCart.dom.totalPrice){
       price.innerHTML = thisCart.totalPrice;
     }
 

@@ -55,7 +55,6 @@ class AmountWidget extends BaseWidget{ //dziedziczy metody z basewidget
       event.preventDefault();
       thisWidget.value = thisWidget.value + 1;
     });
-    // DO POPRAWKI AMOUNT W ORDER!!!!!!!!!!
   }
 
 
